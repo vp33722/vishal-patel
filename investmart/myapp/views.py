@@ -469,7 +469,7 @@ def add_image_data(request):
 
 #For rendering user Home page
 def home(request):
-    return render(request,'home.html', {"base":"home"})
+    return render(request,'test.html', {"base":"home"})
 
 #search place according to textbox value search
 def serch_places(request):
