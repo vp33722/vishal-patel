@@ -1,0 +1,125 @@
+{% block content %}
+{% for k,v in articles.items %}
+<div class="" style="padding: 20px; float: left;width: 100% ">
+    <div class="card" style="height: 100px;width: 100%">
+        <div class="row">
+            <div class="col-md-3" style="padding: 30px;">
+                    <h5 class="card-title"><b>{{ v.placetitle }}</b></h5>
+                    <b>{{ v.placevalue }}</b>
+            </div>
+            <div class="col-md-3" style="padding: 30px;">
+                <h5 class="card-title"><b>{{ v.placetitle2 }}</b></h5>
+                <b>{{ v.placevalue2 }}</b>
+            </div>
+            <div class="col-md-3" style="padding: 30px;">
+                <h5 class="card-title"><b>{{ v.placetitle3 }}</b></h5>
+                <b>{{ v.placevalue3 }}</b>
+            </div>
+            <div class="col-md-3" style="padding: 30px;">
+                <h5 class="card-title"><b>{{ v.placetitle4 }}</b></h5>
+                <b>{{ v.placevalue4 }}</b>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="" style="padding: 20px; float: left;width: 100% ">
+    <div class="card" style="min-height:300px;width: 100%">
+            <div class="row">
+                <div class="col" style="padding: 30px;">
+                    <button type="button" style="text-align: left;width: 100%;background-color: #ffffff;padding: 4px;border: white;" data-toggle="collapse" data-target="#demo">
+                            <h5 class="card-title" style="margin-bottom: 0px;" id="desc_show">
+                                    <i class="fa fa-angle-down"  style="font-weight: 900" aria-hidden="true"></i>
+                                <b>{{ v.title }}</b>
+                            </h5>
+                    </button>
+                    <div id="demo" style="margin:12px;" class="collapse">
+            
+                            {{ v.description }}
+                            {% for l in v.descriptions %}
+                            <span>{{ l }}</span>
+                            {% endfor %}
+                            <span id="desc{{ k }}"></span><i class="fa fa-edit" style="font-weight: 500;font-size: 24px;" data-toggle="modal" data-target="#myModal" onclick="addToValues('{{ k }}')"></i>
+                    </div>
+                    <input type="text" value="{{ v.description }}" class="descdata{{ k }}" style="display: none;">
+                </div>
+                <div class="col">
+                        <div class="row"><br>
+                           
+                                {% for i in v.image %}
+                                <div class="col" >
+                                        <img src="{{ i }}" style="height: 200px;width: 200px;">
+                                </div>
+                                {% endfor %}
+                                                           
+                                {% for j in v.video %}
+                                {% if j == "static/images/video_icon.png" %}
+                                <div class="col" style="margin-top: 12px;">
+                                    <img src="{{ j }}" style="height: 200px;width: 200px;">
+                                </div>
+
+                                {% else %}
+                                <div class="col">
+                                    <video src="{{ j }}" controls style="height: 200px;width: 200px;"></video>
+                                </div>
+                                {% endif %}
+                            {% endfor %} 
+                        </div> 
+                        <div class="row"><br>
+                            
+                    </div>              
+                    <div class="col">
+                           
+                    </div>                                      
+                </div>
+              </div>
+              <div class="row" style="justify-content: flex-end;
+              padding-right: 32px;margin-top: 18px;" >
+                <input type="button" class="btn btn-success" value="View On Map" style="margin-right: 30px;" id="viewMap" lat="{{ v.latitude}}" long="{{ v.longitude }}">
+                <!-- <a href="home/{{ k }}/" class="btn btn-primary">Explore more</a> -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalimage" onclick="setPlace('{{ k }}')">Upload Image/Video</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModalimage" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header" style="padding-bottom: 0px !important">
+                  <h4 class="modal-title">Add Image or Video </h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body" style="padding-bottom: 0px !important">
+                        <div class="row" style="margin: 12px">
+                                <div class="fieldWrapper">
+                                
+                                    <label style="font-weight: 700;" for="{{ res.form.file.id_for_label }}">Choose Image/Video :</label>
+                                    <input type="file" class="form-control-file" id="myfile" >
+                                </div>
+                            </div>
+                            <div class="row"  style="margin: 12px" >
+                                <div class="fieldWrapper">
+                                    
+                                    <label style="font-weight: 700;" for="{{ res.form.img.id_for_label }}">Is this a Image ?:</label>
+                                    <input type="checkbox" id="isImage" checked>
+                                </div>
+                            </div>
+                            <div class="row" style="margin: 12px" >
+                                <div class="fieldWrapper">
+                                    
+                                    <label style="font-weight: 700;" for="{{ res.form.vdo.id_for_label }}">Is this a Video ?</label>
+                                    <input type="checkbox" id="isVideo">
+                                </div>
+                            </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="submit-btn" data-dismiss="modal" id="UploadImage">Submit</button>
+                </div>
+              </div>
+              
+            </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

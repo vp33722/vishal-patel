@@ -1,0 +1,35 @@
+/*search results file*
+
+<div class="row">
+                            <div class="col-12">
+                                <p>
+                                    <b>Description :</b> 
+                                    <textarea name="description">{{ res.data.description  }}</textarea>
+                                </p>
+                            </div>
+                        </div>
+
+  if form.cleaned_data['img']:  
+                #update description*/
+                dis=myapp.objects.get(id=form.cleaned_data["place_id"])
+                dis.description=request.POST['description']
+                dis.save()
+                #end#                            
+                newimg = imageLoc(place_id=form.cleaned_data["place_id"] ,imageLocation=request.FILES['file'] , status = "UnApproved")
+                newimg.save()
+
+            if form.cleaned_data['vdo']:
+                 #update description*/
+                dis=myapp.objects.get(id=form.cleaned_data["place_id"])
+                dis.description=request.POST['description']
+                dis.save()
+                #end#  
+                newimg = VideoLoc(place_id=form.cleaned_data["place_id"] ,vedioLocation=request.FILES['file'] , status = "UnApproved")
+                newimg.save()
+
+/* page redirect after insert data
+
+ data_form = myappForm()                 # loading all the forms for place data
+            form  = imgVDFileForm()                 # for image and vedio inputs
+            res = { "data_form" : data_form,"form" : form , "imgData" : {},"message":"Place Add SuccessFully You Can Add More Here"}
+            return render(request,'add_place.html',{'res':res})          #rendering add_place.html 

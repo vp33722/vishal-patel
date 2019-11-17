@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Place</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<style>
+label {
+    font-size: 20px !important;
+    margin-bottom: 0px !important;
+    font-weight: 600 !important;
+}
+
+.submit-btn {
+    background-color: #007bff;
+    border-radius: 28px;
+    border: 1px solid #007bff;
+    display: inline-block;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-family: Arial;
+    font-size: 17px;
+    height: 43px;
+    padding: 0px 31px;
+    margin-top: 12px;
+    text-decoration: none;
+    text-shadow: rgb(47, 102, 39) 0px 1px 0px;
+}
+.submit-btn1 {
+    border-radius: 28px;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    display: inline-block;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-family: Arial;
+    font-size: 17px;
+
+    padding: 0px 31px;
+    text-decoration: none;
+    text-shadow: rgb(47, 102, 39) 0px 1px 0px;
+}
+</style>
+<body>
+    <div class="conatiner" style="">
+        <form method="POST" action="{% url 'Insert_data' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="conatiner" style="width: 100% ;padding-left:10%;padding-right:10%;padding-top:5%; ">
+                <div class="" style="background-color: lightblue">
+                    <div class="row" style="padding: 50px 50px 30px 50px">
+                        <div class="col-1"></div>
+                        <div class="col-5">
+                            <div class="row">
+                                <div class="col-12">
+                                    {{ res.data_form.non_field_errors }}
+                                    <div class="row">
+                                        <div class="fieldWrapper">
+                                            {{ res.data_form.title.errors }}
+                                            <label style="font-size: 20px !important; margin-bottom: 0px !important;font-weight: 600 !important;" for="{{ res.data_form.title.id_for_label }}"> Title:</label>
+                                            <br/>
+                                            <input type="text" name="title" value="{{ res.value.title }}"
+                                                maxlength="100" required id="id_title">
+                                            {{ res.data_form.help_text }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-12">
+                                    {{ res.data_form.non_field_errors }}
+                                    <div class="row">
+                                        <div class="fieldWrapper">
+                                            {{ res.data_form.description.errors }}
+                                            <label for="{{ res.data_form.description.id_for_label }}"> Description:</label>
+                                                <br/>
+                                            <textarea type="text" rows="4" name="description"  cols="50" maxlength="1000" required id="id_description">{{ res.value.description }} </textarea>
+                                            {{ res.data_form.help_text }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    {{ res.data_form.non_field_errors }}
+                                    <div class="row">
+                                        <div class="fieldWrapper">
+                                            {{ res.data_form.latitude.errors }}
+                                            <label for="{{ res.data_form.latitude.id_for_label }}"> Latitude:</label>
+                                                <br/>
+                                            <input type="text" name="latitude" value="{{ res.value.latitude }}"
+                                                maxlength="1000" required id="id_latitude">
+                                            {{ res.data_form.help_text }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    {{ res.data_form.non_field_errors }}
+                                    <div class="row">
+                                        <div class="fieldWrapper">
+                                            {{ res.data_form.longitude.errors }}
+                                            <label for="{{ res.data_form.longitude.id_for_label }}"> Longitude:</label>
+                                                <br/>
+                                            <input type="text" name="longitude" value="{{ res.value.longitude }}"
+                                                maxlength="1000" required id="id_longitude">
+                                            {{ res.data_form.help_text }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col-6">
+                                <div class="row">
+                                        <div class="col-6">
+                                            {{ res.data_form.non_field_errors }}
+                                            <div class="row">
+                                                <div class="fieldWrapper">
+                                                    {{ res.data_form.placetitle.errors }}
+                                                    <label for="{{ res.data_form.placetitle.id_for_label }}"> Title 1:</label>
+                                                        <br/>
+                                                    <input type="text" name="placetitle" value="{{ res.value.placetitle }}"
+                                                        maxlength="1000" id="id_placetitle">
+                                                    {{ res.data_form.help_text }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                                {{ res.data_form.non_field_errors }}
+                                                <div class="row">
+                                                    <div class="fieldWrapper">
+                                                        {{ res.data_form.placevalue.errors }}
+                                                        <label for="{{ res.data_form.placevalue.id_for_label }}"> Value 1:</label>
+                                                            <br/>
+                                                        <input type="text" name="placevalue" value="{{ res.value.placevalue }}"
+                                                            maxlength="1000" id="id_placevalue">
+                                                        {{ res.data_form.help_text }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                   
+                                    <div class="row">
+                                        <div class="col-6">
+                                            {{ res.data_form.non_field_errors }}
+                                            <div class="row">
+                                                <div class="fieldWrapper">
+                                                    {{ res.data_form.placetitle2.errors }}
+                                                    <label for="{{ res.data_form.placetitle2.id_for_label }}"> Title 2:</label>
+                                                        <br/>
+                                                    <input type="text" name="placetitle2" value="{{ res.value.placetitle2 }}"
+                                                        maxlength="1000" id="id_placetitle2">
+                                                    {{ res.data_form.help_text }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                                {{ res.data_form.non_field_errors }}
+                                                <div class="row">
+                                                    <div class="fieldWrapper">
+                                                        {{ res.data_form.placevalue2.errors }}
+                                                        <label for="{{ res.data_form.placevalue2.id_for_label }}"> Value 2:</label>
+                                                            <br/>
+                                                        <input type="text" name="placevalue2" value="{{ res.value.placevalue2 }}"
+                                                            maxlength="1000" id="id_placevalue2">
+                                                        {{ res.data_form.help_text }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                
+                                    <div class="row">
+                                        <div class="col-6">
+                                            {{ res.data_form.non_field_errors }}
+                                            <div class="row">
+                                                <div class="fieldWrapper">
+                                                    {{ res.data_form.placetitle3.errors }}
+                                                    <label for="{{ res.data_form.placetitle3.id_for_label }}"> Title 3:</label>
+                                                        <br/>
+                                                    <input type="text" name="placetitle3" value="{{ res.value.placetitle3 }}"
+                                                        maxlength="1000" id="id_placetitle3">
+                                                    {{ res.data_form.help_text }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                                {{ res.data_form.non_field_errors }}
+                                                <div class="row">
+                                                    <div class="fieldWrapper">
+                                                        {{ res.data_form.placevalue3.errors }}
+                                                        <label for="{{ res.data_form.placevalue3.id_for_label }}"> Value 3:</label>
+                                                            <br/>
+                                                        <input type="text" name="placevalue3" value="{{ res.value.placevalue3 }}"
+                                                            maxlength="1000" id="id_placevalue3">
+                                                        {{ res.data_form.help_text }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            {{ res.data_form.non_field_errors }}
+                                            <div class="row">
+                                                <div class="fieldWrapper">
+                                                    {{ res.data_form.placetitle4.errors }}
+                                                    <label for="{{ res.data_form.placetitle4.id_for_label }}"> Title 4:</label>
+                                                        <br/>
+                                                    <input type="text" name="placetitle4" value="{{ res.value.placetitle4 }}"
+                                                        maxlength="1000" id="id_placetitle4">
+                                                    {{ res.data_form.help_text }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                                {{ res.data_form.non_field_errors }}
+                                                <div class="row">
+                                                    <div class="fieldWrapper">
+                                                        {{ res.data_form.placevalue4.errors }}
+                                                        <label for="{{ res.data_form.placevalue4.id_for_label }}"> Value 4:</label>
+                                                            <br/>
+                                                        <input type="text" name="placevalue4" value="{{ res.value.placevalue4 }}"
+                                                            maxlength="1000" id="id_placevalue4">
+                                                        {{ res.data_form.help_text }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                            <div class="row" style="margin-top: 12px">
+                                <div class="col-12">
+                                    <!-- {{ res.form.as_ul }} -->
+                                    <div class="row">
+                                        <div class="fieldWrapper">
+                                            <input type="hidden" name="place_id" required id="id_place_id"
+                                                value="{{res.value.place_id}}">
+                                        </div>
+                                    </div>
+
+                                    {{ res.form.non_field_errors }}
+                                    <div class="row">
+                                        <div class="fieldWrapper">
+                                            {{ res.form.file.errors }}
+                                            <label for="{{ res.form.file.id_for_label }}">Choose Image/Video :</label>
+                                            {{ res.form.file }}
+                                            {{ res.form.help_text }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="fieldWrapper">
+                                            {{ res.form.img.errors }}
+                                            <label for="{{ res.form.img.id_for_label }}">Is this a Image?:</label>
+                                            {{ res.form.img }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="fieldWrapper">
+                                            {{ res.form.vdo.errors }}
+                                            <label for="{{ res.form.vdo.id_for_label }}">Is this a Video?:</label>
+                                            {{ res.form.vdo }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="">
+                      
+                      
+                           
+                                <a style="text-decoration: none;margin:auto" href="{% url 'index' %}" >
+                                    <button type="button" class="button submit-btn"  style="margin-bottom: 6px;" value="Go back">Go Back</button>
+                                </a>
+                                <a style="text-decoration: none;margin:auto" class="" href="/adminpanel/0/">
+                                    <button type="button" class="button submit-btn" style="margin-bottom: 6px;" value="Go back">Add More Place</button>
+                                </a>
+                         
+                      
+                            <input type="submit" class="submit-btn" value="Update Record" style="margin: auto;margin-bottom: 6px;">
+                     
+                            <input id=deleterecord name="search submit-btn" style="margin: auto;"
+                                onclick='ajaxFun("{{ res.value.place_id }}","Delete","record")' class="submit-btn" type="button"
+                                value="Delete Record">
+                            </input>
+                       
+                    </div>
+                </div>
+                
+                <div class="alert alert-info" style="text-align: center;">
+                    <strong>{{ res.value.message }}</strong>
+                </div>
+            </div>
+        
+
+            <div>
+                <div class="row conatiner"  style="padding-left: 10%;padding-right:10%;">
+                    <div >
+                        <h3>Users Image and Video</h3>
+                        <div class="" style="width:100%;">
+                            <div id=''>
+                                {% for imgvalues in res.imgData %}
+                                <div id={{ imgvalues.id }}card class="" style="padding: 20px; float: left;">
+                                    <div class="card"
+                                        style="width: 18rem;min-height: 300px;border-radius: 50px;background-color: lightgrey">
+                                        <div class="" style="height: 280px;">
+                                            <a href="/static/media/{{ imgvalues.imageLocation  }}">
+                                                <img class="card-img-top"
+                                                    src="/static/media/{{ imgvalues.imageLocation  }}"
+                                                    alt="Card image cap" style="height:100%;border-radius: 50px;">
+                                            </a>
+                                        </div>
+                                        <div class="card-body" style="text-align: center;padding: 3px;">
+                                            <input id={{ imgvalues.id }}status name="search"
+                                                onclick='ajaxFun("{{ imgvalues.id }}","","image")' class="submit-btn1"
+                                                type="button" value="{{ imgvalues.status }}">
+                                            </input>
+                                            <input id={{ imgvalues.id }}delete name="search"
+                                                onclick='ajaxFun("{{ imgvalues.id }}","Delete","image")' class="submit-btn1"
+                                                type="button" value="Delete">
+                                            </input>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="" style="width:100%;">
+                            <div id=''>
+                                {% for vdovalues in res.vdoData %}
+                                <div id={{ vdovalues.id }}card class="" style="padding: 20px; float: left;">
+                                    <div class="card"
+                                        style="width: 18rem;min-height: 300px;border-radius: 50px;background-color: lightgrey">
+                                        <div class="" style="height: 280px;">
+                                            <a href="/static/media/{{ vdovalues.vedioLocation  }}">
+                                                <video class="card-img-top" controls
+                                                src="/static/media/{{ vdovalues.vedioLocation }}" alt="Card image cap"
+                                                style="height:100%;border-radius: 20px;"></video>
+                                            </a>
+                                        </div>
+                                        <div class="card-body" style="text-align: center;padding: 3px;">
+                                            <input id={{ vdovalues.id }}status name="search"
+                                                onclick='ajaxFun("{{ vdovalues.id }}","","video")' class="submit-btn1"
+                                                type="button" value="{{ vdovalues.status }}">
+                                            </input>
+                                            <input id={{ vdovalues.id }}delete name="search"
+                                                onclick='ajaxFun("{{ vdovalues.id }}","Delete","video")' class="submit-btn1"
+                                                type="button" value="Delete">
+                                            </input>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="">
+                <div class="row conatiner" style="padding-left: 10%;padding-right:10%;" >  
+                    <div class="col-12 ">
+                            <h3>Users Descriptions</h3>
+                        <div class="" style="width:100%;">                   
+                            <div id=''>
+                                    {% for a in res.desData %}
+                                    <div style="width: 18rem;
+                                    min-height: 300px;
+                                    margin: 6px;
+                                    float: left;
+                                    border: 1px solid;">
+                                      <h6 style="min-height: 250px">{{  a.descriptionPlace }}</h6>
+                                      <div style="border-top: 1px solid;padding-top:4px"> 
+                                          <div style="width: 49%;float: left;text-align: center">
+                                                <input id={{ a.id }}status name="search"
+                                                onclick='ApprovedCards("{{ a.id }}")'
+                                                class="submit-btn1" type="button" value="Approved">
+                                            </input>
+                                          </div>
+                                          <div style="width: 49%;float:right;text-align: center;">
+                                                <input id={{ a.id }}status name="search"
+                                                onclick='DeleteCards("{{ a.id }}")'
+                                                class="submit-btn1" type="button" value="Delete">
+                                            </input>
+                                          </div>
+                                      </div>
+                                                                   
+                                </div>
+                                  
+                                    {% endfor %}
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/static/js/Result_script.js"></script>
+    <script type="text/javascript">
+        function ApprovedCards(value){
+            $.ajax({
+            type: "POST",
+            url: '/unapproved',
+            data: {
+                'place_id':value,
+                'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(response){
+                alert(response);
+                location.reload(true) 
+            }
+        });
+        }
+        function DeleteCards(value){
+            $.ajax({
+            type: "POST",
+            url: '/deletecards',
+            data: {
+                'place_id':value,
+                'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(response){
+                alert(response);
+                location.reload(true) 
+            }
+        });
+        }   
+    </script>
+</body>
+
+</html>
